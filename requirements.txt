@@ -3,4 +3,4 @@ pandas
 seaborn
 statsmodels
 pmdarima
-sklearn
+scikit-learn

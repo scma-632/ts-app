@@ -30,23 +30,28 @@ st.write('Seasonal decomposition:')
 st.pyplot(decomposition.plot())
 
 # Train-test split
-train, test = train_test_split(ts_data, test_size=0.2, shuffle=False)
+monthly_data = ts_data.resample("M").mean()
+train, test = train_test_split(monthly_data, test_size=0.2, shuffle=False)
 
 # Model fitting
 st.write('Fitting model...')
-model = auto_arima(train, seasonal=True, suppress_warnings=True)
+model = auto_arima(train, seasonal=True,m=12, suppress_warnings=True)
 
-# Forecast
-forecast = model.predict(n_periods=forecast_horizon)
-forecast_index = pd.date_range(start=test.index[-1], periods=forecast_horizon + 1, closed='right')
-forecast_series = pd.Series(forecast, index=forecast_index)
+# Generate forecast
+forecast, conf_int = model.predict(n_periods=forecast_horizon, return_conf_int=True)
 
-# Plot results
-plt.figure(figsize=(14, 7))
-plt.plot(ts_data, label='Actual')
-plt.plot(forecast_series, label='Forecast')
+# Plot the original data, fitted values, and forecast
+plt.figure(figsize=(12, 6))
+plt.plot(train, label='Original Data')
+plt.plot(forecast.index, forecast, label='Forecast', color='green')
+plt.fill_between(forecast.index, 
+                 conf_int[:, 0], 
+                 conf_int[:, 1], 
+                 color='k', alpha=.15)
 plt.legend()
-plt.title('Stock Price Forecast')
+plt.xlabel('Date')
+plt.ylabel('Value')
+plt.title('Auto ARIMA Forecasting')
 st.pyplot(plt)
 
 st.write('Forecasted values:')

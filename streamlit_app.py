@@ -55,4 +55,4 @@ plt.title('Auto ARIMA Forecasting')
 st.pyplot(plt)
 
 st.write('Forecasted values:')
-st.write(forecast_series)
+st.write(forecast)

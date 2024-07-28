@@ -1,0 +1,6 @@
+yfinance
+pandas
+seaborn
+statsmodels
+pmdarima
+sklearn

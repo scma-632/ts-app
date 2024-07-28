@@ -3,7 +3,7 @@ import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
 from statsmodels.tsa.seasonal import seasonal_decompose
-#from pmdarima import auto_arima
+from pmdarima import auto_arima
 from sklearn.model_selection import train_test_split
 
 # Streamlit app title

@@ -34,20 +34,20 @@ train, test = train_test_split(ts_data, test_size=0.2, shuffle=False)
 
 # Model fitting
 st.write('Fitting model...')
-#model = auto_arima(train, seasonal=True, suppress_warnings=True)
+model = auto_arima(train, seasonal=True, suppress_warnings=True)
 
 # Forecast
-#forecast = model.predict(n_periods=forecast_horizon)
-#forecast_index = pd.date_range(start=test.index[-1], periods=forecast_horizon + 1, closed='right')
-#forecast_series = pd.Series(forecast, index=forecast_index)
+forecast = model.predict(n_periods=forecast_horizon)
+forecast_index = pd.date_range(start=test.index[-1], periods=forecast_horizon + 1, closed='right')
+forecast_series = pd.Series(forecast, index=forecast_index)
 
 # Plot results
 plt.figure(figsize=(14, 7))
 plt.plot(ts_data, label='Actual')
-#plt.plot(forecast_series, label='Forecast')
+plt.plot(forecast_series, label='Forecast')
 plt.legend()
 plt.title('Stock Price Forecast')
 st.pyplot(plt)
 
 st.write('Forecasted values:')
-#st.write(forecast_series)
+st.write(forecast_series)

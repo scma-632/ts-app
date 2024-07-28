@@ -7,7 +7,21 @@ from pmdarima import auto_arima
 from sklearn.model_selection import train_test_split
 
 # Streamlit app title
-st.title('Stock Price Time Series Forecasting')
+st.set_page_config(layout="wide")
+st.markdown(
+    "<h1 style='text-align: center;'>Stock Price Forecaster by <a href='https://github.com/scma-632'>SCMA 632</a></h1>",
+    unsafe_allow_html=True
+)
+st.markdown(
+    """
+    <p align="center">
+      <a href="https://github.com/DenverCoder1/readme-typing-svg">
+        <img src="https://readme-typing-svg.herokuapp.com?font=Time+New+Roman&color=yellow&size=30&center=true&vCenter=true&width=600&height=100&lines=Stock+Forecasts+Made+Simple!;stock_analyser-1.0;" alt="Typing SVG">
+      </a>
+    </p>
+    """,
+    unsafe_allow_html=True
+)
 
 # User inputs
 ticker = st.text_input('Enter stock ticker symbol', 'AAPL')

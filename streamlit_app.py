@@ -25,7 +25,7 @@ data.set_index('Date', inplace=True)
 ts_data = data['Adj Close']
 
 # Decompose time series
-decomposition = seasonal_decompose(ts_data, model='multiplicative', period=365)
+decomposition = seasonal_decompose(ts_data, model='multiplicative', period=12)
 st.write('Seasonal decomposition:')
 st.pyplot(decomposition.plot())
 

@@ -34,7 +34,7 @@ train, test = train_test_split(ts_data, test_size=0.2, shuffle=False)
 
 # Model fitting
 st.write('Fitting model...')
-model = auto_arima(train, seasonal=True, m=12, suppress_warnings=True)
+model = auto_arima(train, seasonal=True, suppress_warnings=True)
 
 # Forecast
 forecast = model.predict(n_periods=forecast_horizon)
